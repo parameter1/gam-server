@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  app:
+    tty: true
+    build: ./dev
+    volumes:
+    - .:/app:cached
+    working_dir: /app
+    ports:
+      - "59087:80"

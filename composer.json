@@ -1,0 +1,15 @@
+{
+    "name": "root/server",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "slim/slim": "^4.5",
+        "googleads/googleads-php-lib": "^48.0",
+        "slim/psr7": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+          "Parameter1\\": "src/"
+        }
+      }
+}
