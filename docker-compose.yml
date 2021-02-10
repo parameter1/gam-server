@@ -1,11 +1,28 @@
 version: '3.7'
 
 services:
-  gam:
+  # api:
+  #   tty: true
+  #   init: true
+  #   image: node:14.15-alpine
+  #   working_dir: /api
+  #   volumes:
+  #     - .:/invoicing:cached
+  #     - ./node_modules:/invoicing/node_modules:delegated
+  #     - yarn-cache:/.yarn-cache
+  #   environment:
+  #     NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
+  #     NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
+  #     NODE_ENV: development
+  #     TERMINUS_TIMEOUT: 1000
+  #     TERMINUS_SHUTDOWN_DELAY: 0
+  #     YARN_CACHE_FOLDER: /.yarn-cache
+
+  service:
     tty: true
-    build: ./gam/dev
+    build: ./service/dev
+    working_dir: /service
     volumes:
-    - .:/gam:cached
-    working_dir: /gam
+    - ./service:/service:cached
     ports:
       - "59087:80"
