@@ -23,6 +23,8 @@ services:
     build: ./service/dev
     working_dir: /service
     volumes:
-    - ./service:/service:cached
+      - ./service:/service:cached
+    environment:
+      APACHE_DOCUMENT_ROOT: /service/public
     ports:
       - "59087:80"
