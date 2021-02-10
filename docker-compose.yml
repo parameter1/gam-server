@@ -1,11 +1,11 @@
 version: '3.7'
 
 services:
-  app:
+  gam:
     tty: true
-    build: ./dev
+    build: ./gam/dev
     volumes:
-    - .:/app:cached
-    working_dir: /app
+    - .:/gam:cached
+    working_dir: /gam
     ports:
       - "59087:80"
