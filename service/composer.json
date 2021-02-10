@@ -1,15 +1,16 @@
 {
-    "name": "root/server",
-    "type": "project",
-    "license": "MIT",
-    "require": {
-        "slim/slim": "^4.5",
-        "googleads/googleads-php-lib": "^48.0",
-        "slim/psr7": "^1.2"
-    },
-    "autoload": {
-        "psr-4": {
-          "Parameter1\\": "src/"
-        }
-      }
+  "name": "parameter1/service",
+  "description": "Basic REST-like API for returning JSON results from the GAM API.",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "slim/slim": "^4.7.1",
+    "googleads/googleads-php-lib": "^50.0.1",
+    "slim/psr7": "^1.3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Parameter1\\": "src/"
+    }
+  }
 }
