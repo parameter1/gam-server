@@ -18,13 +18,13 @@ services:
   #     TERMINUS_SHUTDOWN_DELAY: 0
   #     YARN_CACHE_FOLDER: /.yarn-cache
 
-  service:
+  rest:
     tty: true
-    build: ./service/dev
-    working_dir: /service
+    build: ./rest/dev
+    working_dir: /rest
     volumes:
-      - ./service:/service:cached
+      - ./rest:/rest:cached
     environment:
-      APACHE_DOCUMENT_ROOT: /service/public
+      APACHE_DOCUMENT_ROOT: /rest/public
     ports:
       - "59087:80"

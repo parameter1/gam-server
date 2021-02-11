@@ -3,4 +3,4 @@ docker-compose run \
   --entrypoint /bin/bash \
   --no-deps \
   --rm \
-  service
+  rest

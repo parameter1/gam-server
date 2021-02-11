@@ -4,5 +4,5 @@ docker-compose run \
   --no-deps \
   --rm \
   -e COMPOSER_ALLOW_SUPERUSER=1 \
-  service \
+  rest \
   $@
