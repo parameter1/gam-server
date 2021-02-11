@@ -26,5 +26,6 @@ services:
       - ./rest:/rest:cached
     environment:
       APACHE_DOCUMENT_ROOT: /rest/public
+      JSON_KEY_FILE_ROOT: ${JSON_KEY_FILE_ROOT}
     ports:
       - "59087:80"

@@ -1,5 +1,2 @@
 /vendor/
-
-service_account.json
-
-.env
+/service-accounts/
