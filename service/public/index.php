@@ -1,27 +1,26 @@
 <?php
 require '../vendor/autoload.php';
 
-use Psr\Http\Message\ServerRequestInterface;
 use Parameter1\Controller\DefaultController;
+use Parameter1\Error\JsonErrorRenderer;
+use Psr\Http\Message\ServerRequestInterface;
 use Slim\Factory\AppFactory;
+use Slim\Routing\RouteCollectorProxy;
+
+use Slim\Exception\HttpNotFoundException;
+use Slim\Exception\HttpException;
 
 $app = AppFactory::create();
+
+$app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
 
-// Define Custom Error Handler
-$customErrorHandler = function (ServerRequestInterface $request, Throwable $exception) use ($app) {
-  $payload = ['error' => $exception->getMessage()];
-  $response = $app->getResponseFactory()->createResponse();
-  $response->getBody()->write(
-    json_encode($payload, JSON_UNESCAPED_UNICODE)
-  );
-  return $response->withStatus(500)->withHeader('content-type', 'application/json');;
-};
-
-// Add Error Middleware
+// Add custom error render and force JSON for all responses
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
-$errorMiddleware->setDefaultErrorHandler($customErrorHandler);
+$errorHandler = $errorMiddleware->getDefaultErrorHandler();
+$errorHandler->registerErrorRenderer('application/json', JsonErrorRenderer::class);
+$errorHandler->forceContentType('application/json');
 
-$app->get('/', DefaultController::class . ':index');
+$app->get('/', DefaultController::class . ':index')->setName('index');
 $app->get('/favicon.ico', DefaultController::class . ':favicon');
 $app->run();
