@@ -3,6 +3,7 @@ require '../vendor/autoload.php';
 
 use Parameter1\Controller\DefaultController;
 use Parameter1\Error\JsonErrorRenderer;
+use Parameter1\Util\SlimUtil;
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 
@@ -20,4 +21,12 @@ $errorHandler->forceContentType('application/json');
 
 $app->get('/', DefaultController::class . ':index')->setName('index');
 $app->get('/favicon.ico', DefaultController::class . ':favicon');
+
+$app->group('/gam/{networkCode:[0-9]+}', function (RouteCollectorProxy $group) {
+  $group->get('', function($req, $res, $args) {
+    $data = ['networkCode' => intval($args['networkCode'])];
+    return SlimUtil::writeJSON($res, ['data' => $data]);
+  });
+});
+
 $app->run();
